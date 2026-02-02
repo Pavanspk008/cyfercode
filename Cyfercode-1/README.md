@@ -15,6 +15,7 @@ The goal of this project was to:
 detect attacks using behavioral and contextual signals,avoid over-reliance on predefined attack names and produce decisions that SOC teams can understand, tune, and trust
 
 Approach & Modeling Strategy
+
 1️⃣ Baseline V1 — Naive Model
 
 Logistic Regression with raw alert metadata
