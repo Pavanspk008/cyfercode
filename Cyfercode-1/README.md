@@ -48,9 +48,9 @@ Design Choice: Signature-free, interpretable, stable
 
 Why not complex models?
 
-Interpretability for SOC teams
-Easier monitoring and debugging
-Configurable thresholds without retraining
+Interpretability for SOC teams,
+Easier monitoring and debugging,
+Configurable thresholds without retraining.
 
 Evaluation Strategy
 
