@@ -38,13 +38,70 @@ contextual signals (IP type, protocol, severity)
 Achieved near-perfect recall with realistic false positives
 Demonstrated robust, behavior-driven learning
 
-✅ Selected for production deployment
+✅ Baseline V2-B was selected for production deployment
 
-🤖 Final Model
+🤖 Final Model (Deployed)
 
 Algorithm: Logistic Regression
 
-Design Choice: Signature-free, interpretable, stable
+Design: Signature-free, behavior-driven
+
+Why Logistic Regression?
+
+Transparent coefficients
+
+SOC-friendly explanations
+
+Stable probability outputs
+
+Easy threshold control
+
+Core Features Used
+Behavioral Signals
+
+failed_attempts
+
+session_duration
+
+bytes_sent
+
+dst_port
+
+Contextual Signals
+
+src_ip_type
+
+protocol
+
+event_type
+
+alert_severity
+
+is_cloud_asset
+
+No attack names
+No rule-based labels
+No signature leakage
+
+Production Inference Flow
+
+Receive a single SIEM event
+
+Validate & convert to tabular format
+
+Generate attack probability
+
+Apply configurable SOC threshold
+
+Return structured decision output
+
+{
+  "attack_probability": 0.99996,
+  "threshold": 0.7,
+  "prediction": "ATTACK",
+  "model": "logistic_regression",
+  "baseline": "V2-B"
+}
 
 Why not complex models?
 
@@ -70,7 +127,7 @@ Model outputs attack_probability
 SOC-controlled threshold determines final alert
 Sensitivity can be adjusted without retraining
 
-📊 Monitoring & Drift Strategy
+Monitoring & Drift Strategy
 
 After deployment, the system monitors:
 
@@ -81,181 +138,6 @@ Key feature drift (severity, failed attempts, IP type)
 Alert volume & SOC workload
 
 Performance metrics when labels become available
-
-This ensures early detection of silent failures.
-
-🔄 Retraining Strategy
-
-Retraining triggered by:
-
-feature drift
-
-prediction drift
-
-operational feedback
-
-performance degradation
-
-New models are validated offline
-
-Rollback plan is always maintained
-
-📦 Project Structure (Logical)
-├── data/
-│   └── raw/
-├── notebooks/
-│   ├── baseline_v1.ipynb
-│   ├── baseline_v2.ipynb
-│   └── production_inference_v2b.ipynb
-├── models/
-│   └── siem_lr_v2b_pipeline.joblib
-└── README.md
-
-🎤 Key Takeaway
-
-This project demonstrates how to build a reliable, interpretable, and production-ready ML system for cybersecurity — focusing on behavior, robustness, and operational control rather than model complexity.
-
-🧾 One-Line Summary (Resume-Ready)
-
-Built a signature-free, interpretable ML system for SIEM event classification with production-grade inference, monitoring, and retraining design.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-🔐 SIEM Event Classification — Signature-Free ML System
-
-Production-grade machine learning system for behavioral cybersecurity detection
-
-🚀 Overview
-
-This project implements a signature-free, interpretable machine learning system to classify SIEM security events as malicious or benign.
-
-Unlike traditional rule-based systems, the model focuses on behavioral and contextual signals, making it more robust to unseen or zero-day attacks while remaining fully explainable for SOC teams.
-
-🎯 Key Objectives
-
-Detect attacks without relying on predefined signatures
-
-Maintain high recall with controlled alert noise
-
-Provide interpretable decisions for SOC analysts
-
-Design the system with production readiness in mind
-
-🧠 Modeling Strategy
-Baseline Evolution
-Baseline	Description	Key Insight
-V1	Naive Logistic Regression	Detected shortcut learning via signatures
-V2-A	Signature-Reduced	Preserved performance with abstracted signals
-V2-B ✅	Signature-Free	Behavioral learning with realistic noise
-
-👉 Baseline V2-B was selected for production deployment
-
-🤖 Final Model (Deployed)
-
-Algorithm: Logistic Regression
-
-Design: Signature-free, behavior-driven
-
-Why Logistic Regression?
-
-Transparent coefficients
-
-SOC-friendly explanations
-
-Stable probability outputs
-
-Easy threshold control
-
-📊 Core Features Used
-Behavioral Signals
-
-failed_attempts
-
-session_duration
-
-bytes_sent
-
-dst_port
-
-Contextual Signals
-
-src_ip_type
-
-protocol
-
-event_type
-
-alert_severity
-
-is_cloud_asset
-
-❌ No attack names
-❌ No rule-based labels
-❌ No signature leakage
-
-⚙️ Production Inference Flow
-
-Receive a single SIEM event
-
-Validate & convert to tabular format
-
-Generate attack probability
-
-Apply configurable SOC threshold
-
-Return structured decision output
-
-{
-  "attack_probability": 0.99996,
-  "threshold": 0.7,
-  "prediction": "ATTACK",
-  "model": "logistic_regression",
-  "baseline": "V2-B"
-}
-
-🔎 Evaluation Highlights
-
-Near-perfect recall under signature-free stress testing
-
-Smooth threshold behavior (no probability collapse)
-
-Realistic false positives (expected in security systems)
-
-Performance degradation was intentional and desirable to validate robustness.
-
-📈 Monitoring & Drift Strategy
-
-After deployment, the system monitors:
-
-📉 Prediction distribution drift
-
-📊 Key feature drift (severity, IP type, failed attempts)
-
-🚨 Alert volume & SOC workload
-
-🎯 Delayed performance metrics
 
 This ensures early detection of silent failures.
 
@@ -275,8 +157,8 @@ Offline validation before redeploy
 
 Rollback-ready model versioning
 
-🗂️ Project Structure
-├── README.md
+
+Project Structure (Logical)
 ├── data/
 │   └── raw/
 ├── notebooks/
@@ -285,11 +167,26 @@ Rollback-ready model versioning
 │   └── production_inference_v2b.ipynb
 ├── models/
 │   └── siem_lr_v2b_pipeline.joblib
+└── README.md
 
-🧾 Key Takeaway
 
-This project demonstrates how to build a production-ready, interpretable ML system that detects behavioral risk rather than memorizing attack signatures.
 
-📌 Resume-Ready One-Liner
 
-Built a signature-free, interpretable ML system for SIEM event classification with production-grade inference, monitoring, and retraining design.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
