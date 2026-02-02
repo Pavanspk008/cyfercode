@@ -1,63 +1,40 @@
-📄 Final Project README / Summary
+Final Project README / Summary
+Project Overview
 
-You can copy–paste this as-is and tweak wording later if you want.
-
-🔐 SIEM Event Classification — Signature-Free ML System
-📌 Project Overview
-
-This project builds a production-ready machine learning system to classify SIEM security events as malicious or benign.
+This project builds a production-ready machine learning system to classify SIEM security events as attack or benign.
 The focus is on robust detection, interpretability, and operational reliability, rather than chasing complex models or inflated metrics.
 
 The system is designed to generalize beyond known attack signatures and remain effective against unseen or zero-day behaviors.
 
-🎯 Problem Statement
+Problem Statement
 
 Traditional signature-based security systems perform well on known attacks but struggle with:
-
-unseen attack variants
-
-noisy or missing signatures
-
-frequent rule maintenance
+unseen attack variants,noisy or missing signatures,frequent rule maintenance.
 
 The goal of this project was to:
+detect attacks using behavioral and contextual signals,avoid over-reliance on predefined attack names and produce decisions that SOC teams can understand, tune, and trust
 
-detect attacks using behavioral and contextual signals
-
-avoid over-reliance on predefined attack names
-
-produce decisions that SOC teams can understand, tune, and trust
-
-🧠 Approach & Modeling Strategy
+Approach & Modeling Strategy
 1️⃣ Baseline V1 — Naive Model
 
 Logistic Regression with raw alert metadata
-
 Achieved perfect metrics
-
 Feature importance revealed heavy reliance on alert signatures
 ❌ Identified as shortcut learning
 
 2️⃣ Baseline V2-A — Signature-Reduced
 
 Replaced raw attack names with abstracted behavioral flags
-
 Improved generalization
-
 Served as a feature engineering validation step
 
 3️⃣ Baseline V2-B — Signature-Free (Final Model)
 
 Removed all attack signatures
-
 Relied purely on:
-
 behavioral intensity (e.g., failed attempts)
-
 contextual signals (IP type, protocol, severity)
-
 Achieved near-perfect recall with realistic false positives
-
 Demonstrated robust, behavior-driven learning
 
 ✅ Selected for production deployment
@@ -71,36 +48,25 @@ Design Choice: Signature-free, interpretable, stable
 Why not complex models?
 
 Interpretability for SOC teams
-
 Easier monitoring and debugging
-
 Configurable thresholds without retraining
 
-🧪 Evaluation Strategy
+Evaluation Strategy
 
 Confusion matrix and class-wise metrics
-
 Threshold analysis (security-focused, not accuracy-only)
-
 Stress testing via signature removal
-
 Feature importance via model coefficients
 
-🚀 Production Inference Design
+Production Inference Design
+
 Inference Characteristics
-
 Stateless, single-event inference
-
 Same pipeline used for training and inference
-
 Outputs probability score + final decision
-
 Decision Logic
-
 Model outputs attack_probability
-
 SOC-controlled threshold determines final alert
-
 Sensitivity can be adjusted without retraining
 
 📊 Monitoring & Drift Strategy
